@@ -1,0 +1,8 @@
+# Master References List
+
+# Sources:
+# https://stackoverflow.com/questions/35988/c-like-structures-in-python
+# https://pypi.python.org/pypi/Dijkstar/2.2
+# https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/io.html
+# http://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
+# https://stackoverflow.com/questions/13795758/what-is-sys-maxint-in-python-3

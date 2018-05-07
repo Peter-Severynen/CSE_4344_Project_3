@@ -72,6 +72,7 @@ class TCPPacket:
         s = 0 #binary sum
         print(msg.decode("utf-8", "replace"))
         #loop taking 2 chracters at a time
+        """
         for i in range(0, len(msg), 2):
             a = ord(msg[i])
             b = ord(msg[i + 1])
@@ -80,6 +81,7 @@ class TCPPacket:
         #Ones Complement
         s = s + (s >> 16)
         s = ~s & 0xffff
+        """
         return s
 
     def create_tcp_fields(self):

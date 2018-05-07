@@ -32,10 +32,21 @@ class TCPPacket:
         self.calculate_chksum() #call function that calculates the checksum
         return
     
-    def reassemble_tcp_feilds(self):
-        self.raw = struct.pack('!HHLLBBH', self.tcp_src, self.tcp_dst, self.tcp_seq, self.tcp_ack_seq, self.tcp_hdr_len, self.tcp_flags, self.tcp_wdw) +
-        struct.pack('H', self.tcp_chksum) + struct.pack('!H', self.tcp_urg_ptr)
-        return
+ def reassemble_tcp_fields(self):
+    self.raw = struct.pack(
+        '!HHLLBBH',
+        self.tcp_src,
+        self.tcp_dst,
+        self.tcp_seq,
+        self.tcp_ack_seq,
+        self.tcp_hdr_len,
+        self.tcp_flags,
+        self.tcp_wdw,
+        ) + struct.pack('H', self.tcp_chksum) + struct.pack('!H',
+                self.tcp_urg_ptr)
+ 
+ 
+return
 
     def calculate_chksum(self):
         src_addr = socket.inet_aton(self.src_ip)

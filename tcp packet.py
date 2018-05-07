@@ -32,8 +32,8 @@ class TCPPacket:
         self.calculate_chksum() #call function that calculates the checksum
         return
     
- def reassemble_tcp_fields(self):
-    self.raw = struct.pack(
+    def reassemble_tcp_fields(self):
+        self.raw = struct.pack(
         '!HHLLBBH',
         self.tcp_src,
         self.tcp_dst,
@@ -46,7 +46,7 @@ class TCPPacket:
                 self.tcp_urg_ptr)
  
  
-return
+        return
 
     def calculate_chksum(self):
         src_addr = socket.inet_aton(self.src_ip)
@@ -61,7 +61,7 @@ return
                           placeholder,
                           protocol,
                           tcp_len)
-        psh = psh + self.raw + self.data
+        psh = psh + self.raw + self.data.encode("utf-8")
         
         self.tcp_chksum = self.chksum(psh)
         
@@ -70,7 +70,7 @@ return
 
     def chksum(self, msg):
         s = 0 #binary sum
-        
+        print(msg.decode("utf-8", "replace"))
         #loop taking 2 chracters at a time
         for i in range(0, len(msg), 2):
             a = ord(msg[i])
@@ -128,6 +128,6 @@ if __name__=='__main__':
  s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
 
  tcp = TCPPacket()
- tcp.assemble_tcp_feilds()
+ tcp.assemble_tcp_fields()
 
  s.sendto(tcp.raw, ('127.0.0.1' , 0 ))

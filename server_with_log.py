@@ -35,21 +35,19 @@ def thread(socket):
     while True:
         #Getting a connection
         #receive host and ip address
-        connectionSocket, addr = serverSocket.accept()
-        
         print("\nConnection Socket information:")
         log001.write("\nConnection Socket information:")
         log100.write("\nConnection Socket information:")
         log111.write("\nConnection Socket information:")
-        print(connectionSocket)
-        log001.write(connectionSocket)
-        log100.write(connectionSocket)
-        log111.write(connectionSocket)
-        print("\n\n")
+        connectionSocket, addr = serverSocket.accept()
+        print(type(str(connectionSocket)))
+        log001.write(str(connectionSocket))
+        log100.write(str(connectionSocket))
+        log111.write(str(connectionSocket))
         log001.write("\n\n")
         log100.write("\n\n")
         log111.write("\n\n")
-
+        print(connectionSocket)
         try:
             #Receive a HTTP get request from a client/host.
             message = connectionSocket.recv(4096) 
@@ -62,7 +60,6 @@ def thread(socket):
             log001.write(message.decode('utf-8'))
             log100.write(message.decode('utf-8'))
             log111.write(message.decode('utf-8'))
-            print("\n\n")
             log001.write("\n\n")
             log100.write("\n\n")
             log111.write("\n\n")
@@ -70,9 +67,6 @@ def thread(socket):
             start = time.time()
             
             print("COUNTER = ", counter)
-            log001.write("COUNTER = ", counter)
-            log100.write("COUNTER = ", counter)
-            log111.write("COUNTER = ", counter)
 
             filename = message.split()[1] 
             f = open(filename[1:])
@@ -84,13 +78,10 @@ def thread(socket):
             interval = end - start
             if(interval > 1 or counter % 4 == 0):
                 print("retransmit")
-                log001.write("retransmit")
-                log100.write("retransmit")
-                log111.write("retransmit")
-            print("THE TIMER IS: ", end - start)
-            log001.write("THE TIMER IS: ", end - start)
-            log100.write("THE TIMER IS: ", end - start)
-            log111.write("THE TIMER IS: ", end - start)
+            print("THE TIMER IS: ", interval)
+            log001.write("THE TIMER IS: ", interval)
+            log100.write("THE TIMER IS: ", interval)
+            log111.write("THE TIMER IS: ", interval)
             counter = counter + 1
             connectionSocket.send(str.encode(message))
             #Send the content of the requested file to the client

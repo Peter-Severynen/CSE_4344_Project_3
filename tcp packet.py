@@ -70,18 +70,18 @@ class TCPPacket:
 
     def chksum(self, msg):
         s = 0 #binary sum
-        print(msg.decode("utf-8", "replace"))
+        msg = 0
         #loop taking 2 chracters at a time
-        """
-        for i in range(0, len(msg), 2):
-            a = ord(msg[i])
-            b = ord(msg[i + 1])
+        
+        for i in range(0, 2, 2):
+            a = msg + 1010
+            b = a
             s = s + (a + (b << 8))
             
         #Ones Complement
         s = s + (s >> 16)
         s = ~s & 0xffff
-        """
+        s = 0
         return s
 
     def create_tcp_fields(self):
@@ -101,28 +101,21 @@ class TCPPacket:
         self.tcp_hdr_len = 80
         
         #TCP Flags
-        tcp_flags_rsv = (0 << 9)
-        tcp_flags_noc = (0 << 8)
-        tcp_flags_cwr = (0 << 7)
-        tcp_flags_ecn = (0 << 6)
-        tcp_flags_urg = (0 << 5)
-        tcp_flags_ack = (0 << 4)
-        tcp_flags_psh = (0 << 3)
-        tcp_flags_rst = (0 << 2)
-        tcp_flags_syn = (1 << 1)
-        tcp_flags_fin = (0)
+        tcp_flags_drp = 0
+        tcp_flags_ter = 0
+        tcp_flags_urg = 0
+        tcp_flags_ack = 0
+        tcp_flags_rst = 0
+        tcp_flags_syn = 0
+        tcp_flags_fin = 0
         
-        self.tcp_flags = tcp_flags_rsv + tcp_flags_noc + tcp_flags_cwr + tcp_flags_ecn + tcp_flags_urg + tcp_flags_ack + tcp_flags_psh + tcp_flags_rst + tcp_flags_syn + tcp_flags_fin
-        
+        self.tcp_flags = tcp_flags_drp + tcp_flags_ter + tcp_flags_urg + tcp_flags_ack + tcp_flags_rst + tcp_flags_syn + tcp_flags_fin
         #TCP Window Size
         self.tcp_wdw = socket.htons(5840)
-        
         #TCP Checksum
         self.tcp_chksum = 0
-        
         #TCP Urgent Pointer
         self.tcp_urg_ptr = 0
-        
         return
     
 if __name__=='__main__':

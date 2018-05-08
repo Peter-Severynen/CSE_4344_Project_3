@@ -6,3 +6,4 @@
 # https://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/io.html
 # http://www.bogotobogo.com/python/python_Dijkstras_Shortest_Path_Algorithm.php
 # https://stackoverflow.com/questions/13795758/what-is-sys-maxint-in-python-3
+#https://stackoverflow.com/questions/7370801/measure-time-elapsed-in-python/7370824

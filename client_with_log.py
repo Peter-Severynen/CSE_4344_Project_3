@@ -13,8 +13,15 @@ import struct
 # making a client
 clientSocket = socket(AF_INET, SOCK_STREAM)
 
-new_path = 'log.txt'
-log = open(new_path, 'w')
+new_path1 = 'agent001.txt'
+log001 = open(new_path1, 'w')
+
+new_path2 = 'agent100.txt'
+log100 = open(new_path2, 'w')
+
+new_path3 = 'agent111.txt'
+log111 = open(new_path3, 'w')
+
 
 if (len(sys.argv) == 3):
     hostName = sys.argv[1]

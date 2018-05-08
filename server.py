@@ -8,6 +8,8 @@ Project 1
 
 from socket import * #Import socket module to use sockets.
 from _thread import * #Import _thread module to use multithreading functions
+import time
+
 
 #Making a socket using the socket constructor
 serverSocket = socket(AF_INET, SOCK_STREAM) 
@@ -15,10 +17,12 @@ serverSocket = socket(AF_INET, SOCK_STREAM)
 #Prepare a HTTP server socket
 serverSocket.bind(('', 80))
 serverSocket.listen(10)
+
 print("Waiting for connection...")
 
 #function handles a request from the server socket.
 def thread(socket):
+    counter  = 0
     while True:
         #Getting a connection
         #receive host and ip address
@@ -27,7 +31,7 @@ def thread(socket):
         print("\nConnection Socket information:")
         print(connectionSocket)
         print("\n\n")
-        
+
         try:
             #Receive a HTTP get request from a client/host.
             message = connectionSocket.recv(4096) 
@@ -36,12 +40,21 @@ def thread(socket):
             print(message.decode('utf-8'))
             print("\n\n")
             #Parse get request to receive filename
+            start = time.time()
+            
+            print("COUNTER = ", counter)
             filename = message.split()[1] 
             f = open(filename[1:])
             outputdata = f.readlines()
             #Make all the lines in the file to a list so that we can send the information to the client.
             #Send one HTTP header line into socket.
             message = 'HTTP/1.1 200 OK\n\n'
+            end = time.time()
+            interval = end - start
+            if(interval > 1 or counter % 4 == 0):
+                print("retransmitt")
+            print("THE TIMER IS: ", end - start)
+            counter = counter + 1
             connectionSocket.send(str.encode(message))
             #Send the content of the requested file to the client
             for i in range(0, len(outputdata)):

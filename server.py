@@ -23,6 +23,15 @@ print("Waiting for connection...")
 #function handles a request from the server socket.
 def thread(socket):
     counter  = 0
+    new_path1 = 'agent001.txt'
+    log001 = open(new_path1, 'w')
+
+    new_path2 = 'agent100.txt'
+    log100 = open(new_path2, 'w')
+
+    new_path3 = 'agent111.txt'
+    log111 = open(new_path3, 'w')
+
     while True:
         #Getting a connection
         #receive host and ip address

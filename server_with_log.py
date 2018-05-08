@@ -4,12 +4,10 @@ Carlos Bustos
 Project 1
 """
 
-
-
 from socket import * #Import socket module to use sockets.
 from _thread import * #Import _thread module to use multithreading functions
 import time
-
+import tcp_packet
 
 #Making a socket using the socket constructor
 serverSocket = socket(AF_INET, SOCK_STREAM) 
@@ -22,7 +20,7 @@ print("Waiting for connection...")
 
 #function handles a request from the server socket.
 def thread(socket):
-    counter  = 0
+    counter  = 1
     new_path1 = 'agent001.txt'
     log001 = open(new_path1, 'w')
 
@@ -40,7 +38,6 @@ def thread(socket):
         log100.write("\nConnection Socket information:")
         log111.write("\nConnection Socket information:")
         connectionSocket, addr = serverSocket.accept()
-        print(type(str(connectionSocket)))
         log001.write(str(connectionSocket))
         log100.write(str(connectionSocket))
         log111.write(str(connectionSocket))
@@ -50,7 +47,8 @@ def thread(socket):
         print(connectionSocket)
         try:
             #Receive a HTTP get request from a client/host.
-            message = connectionSocket.recv(4096) 
+            message = connectionSocket.recv(4096)
+            print(type(message))
             #getting the message from the client and decoding it
             print("\nMessage from client:")
             log001.write("\nMessage from client:")
@@ -65,8 +63,6 @@ def thread(socket):
             log111.write("\n\n")
             #Parse get request to receive filename
             start = time.time()
-            
-            print("COUNTER = ", counter)
 
             filename = message.split()[1] 
             f = open(filename[1:])
@@ -78,10 +74,6 @@ def thread(socket):
             interval = end - start
             if(interval > 1 or counter % 4 == 0):
                 print("retransmit")
-            print("THE TIMER IS: ", interval)
-            log001.write("THE TIMER IS: ", interval)
-            log100.write("THE TIMER IS: ", interval)
-            log111.write("THE TIMER IS: ", interval)
             counter = counter + 1
             connectionSocket.send(str.encode(message))
             #Send the content of the requested file to the client

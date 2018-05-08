@@ -117,9 +117,9 @@ def thread(socket):
              log111.write("Connection Closed")
     serverSocket.close() #Close serversocket
     print("\nServer Socket Closed\n\n")
-            log001.write("\nServer Socket Closed\n\n")
-            log100.write("\nServer Socket Closed\n\n")
-            log111.write("\nServer Socket Closed\n\n")
-
+    log001.write("\nServer Socket Closed\n\n")
+    log100.write("\nServer Socket Closed\n\n")
+    log111.write("\nServer Socket Closed\n\n")
+    log.close()
 #Start a thread
 start_new_thread(thread,(serverSocket,))

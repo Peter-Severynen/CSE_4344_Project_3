@@ -11,3 +11,11 @@ RENAME THE FILE IF IT HAS A SPACE
 #execute serverlog.py
 import serverlog
 import tcp_packet
+import routerA
+import routerB
+import routerC
+import routerD
+import routerE
+import routerF
+import routerG
+import routerL

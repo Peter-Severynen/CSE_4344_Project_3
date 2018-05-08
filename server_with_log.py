@@ -120,6 +120,8 @@ def thread(socket):
     log001.write("\nServer Socket Closed\n\n")
     log100.write("\nServer Socket Closed\n\n")
     log111.write("\nServer Socket Closed\n\n")
-    log.close()
+    log001.close()
+    log100.close()
+    log111.close()
 #Start a thread
 start_new_thread(thread,(serverSocket,))

@@ -39,8 +39,8 @@ def thread(socket):
             message = connectionSocket.recv(4096)
             end = time.time()
             interval = end - start
-            message = connectionSocket.recv(4096)
             if(interval > 1 or count % 5 == 0):
+                 message = connectionSocket.recv(4096)
                  print("\nMessage from client:")
                  print(message.decode('utf-8'))
                  log001.write("\nMessage from client:\n")

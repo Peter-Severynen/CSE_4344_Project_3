@@ -10,7 +10,7 @@ Python 3.0 or greater. The user will need to execute main.py which will then exe
 Executing the program:
 The program consist of multiple python files for the client/server, tcp packets, and driver file which? will execute the program all together.
 The user has to make sure all files are located in the same directory. Once the files are all in the same directory, the user can open their
-preferred Python IDE and open the main.py. Once the use has main.py open run the program which will run the client and server as well as
+preferred Python IDE IN ADMINISTRATOR MODE and open the main.py. Once the use has main.py open run the program which will run the client and server as well as
 Dijkstra's algorithm. The display should show all the messages being send between the agents. Once main.py has run there should be 3 new files
 in the directory which are the logs of communication between two agents.
 

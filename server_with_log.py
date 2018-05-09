@@ -20,6 +20,9 @@ def thread(socket):
         log001 = open(new_path, 'a')
         log100 = open(new_path1, 'a')
         log111 = open(new_path2, 'a')
+        log001.write("Server Message Incoming")
+        log100.write("Server Message Incoming")
+        log111.write("Server Message Incoming")
         #Getting a connection
         #receive host and ip address
         connectionSocket, addr = serverSocket.accept()
@@ -36,8 +39,17 @@ def thread(socket):
             message = connectionSocket.recv(4096)
             end = time.time()
             interval = end - start
+            message = connectionSocket.recv(4096)
             if(interval > 1 or count % 5 == 0):
-                 message = connectionSocket.recv(4096)
+                 print("\nMessage from client:")
+                 print(message.decode('utf-8'))
+                 log001.write("\nMessage from client:\n")
+                 log001.write(message.decode('utf-8'))
+                 log100.write("\nMessage from client:\n")
+                 log100.write(message.decode('utf-8'))
+                 log111.write("\nMessage from client:\n")
+                 log111.write(message.decode('utf-8'))
+                 print("\n\n")
             count = count + 1
             #getting the message from the client and decoding it and saving it in a log
             print("\nMessage from client:")
